@@ -42,13 +42,28 @@ if debug:
     print(y_values)
     print(x_values)
 
+
+
 x_values = x_values.reshape(-1, 1)
+
+future_years = np.array(range(4, 19))
+future_years = future_years.reshape(-1, 1)
 
 line_fitter = LinearRegression()
 line_fitter.fit(x_values, y_values)
 line_predict = line_fitter.predict(x_values)
+future_predict = line_fitter.predict(future_years)
+
+legend_labels = ["Data Points", "Linear Prediction", "Future Prediction"]
 
 plt.plot(x_values, y_values, "o")
 plt.plot(x_values, line_predict)
+plt.plot(future_years, future_predict)
+
+plt.legend(legend_labels, loc=8)
+
+plt.ylabel(df.columns[0])
+plt.xlabel(df.columns[1])
+
+plt.savefig("output.png")
 plt.show()
-plt.savefig('output.png')
