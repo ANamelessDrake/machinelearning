@@ -58,8 +58,6 @@ legend_labels = ["Data Points", "Historic Data", "Future Prediction"]
 
 print (future_predict[-1])
 
-#plt.title("By 18: ",future_predict[-1])
-plt.text(0.8, 0.8, 'By 18: ', horizontalalignment='center', verticalalignment='center', transform=ax.transAxes)
 plt.plot(x_values, y_values, "o")
 plt.plot(x_values, line_predict)
 plt.plot(future_years, future_predict)
