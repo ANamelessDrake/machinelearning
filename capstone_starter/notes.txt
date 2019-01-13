@@ -1,0 +1,7 @@
+Can we determine gender based on the words used in essay answers
+Can we determine income based off of words used in essay answers
+Can we determine education based off of words used in essay answers
+
+Can we determine income based off of body_type
+
+Any correlation between age and income
