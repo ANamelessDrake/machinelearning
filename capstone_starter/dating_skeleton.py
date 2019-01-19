@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
 
 def data_therapy(dataFrame):
     temp_holder = []
@@ -72,7 +73,7 @@ essay_8 = data_therapy(essay_8)
 essay_9 = data.essay9.replace(np.nan, '', regex=True)
 essay_9 = data_therapy(essay_9)
 
-educations = data.education.replace(np.nan, '', regex=True)
+educations = data.education.replace(np.nan, 'not_set', regex=True)
 educations = educations.sort_values().unique()
 
 counter = 0
@@ -83,6 +84,9 @@ for education in educations:
     counter += 1
 
 data["education_code"] = data.education.map(education_map)
+
+education_code = data["education_code"]
+educations_code = education_code.replace(np.nan, 'not_set', regex=True)
 
 genders = data.sex.replace(np.nan, '', regex=True)
 genders = genders.sort_values().unique()
@@ -96,10 +100,18 @@ for gender in genders:
 
 data["gender_code"] = data.sex.map(gender_map)
 
+##########################################################################################
 
-print(essay_1[96])
+fig = plt.figure(figsize=15, 12))
+data.groupby('education').education.count().plot.bar(ylim=0)
+plt.show()
 
+counter = CountVectorizer()
+counter.fit(essay_0)
 
+classifer = MultinomialNB()
+
+classifier.fit(essay_0, )
 
 
 end_time = int(time.time())
